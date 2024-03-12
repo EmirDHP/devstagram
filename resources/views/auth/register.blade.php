@@ -58,9 +58,7 @@
                         placeholder="Tu Email de registro" 
                         class="border p-2 w-full rounded-lg "
                     />                    
-                    @error('email')
-                        <p class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center">{{ $message }}</p>
-                    @enderror
+                    
                 </div>
 
                 <div class="mb-5">
