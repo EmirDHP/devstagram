@@ -7,7 +7,14 @@ use Illuminate\Http\Request;
 class PostController extends Controller
 {
     //
-    public function index(){
-        dd('Desde el muro');
+    public function __construct()
+    {
+        $this->middleware('auth');    
+    }
+
+    public function index()
+    {
+        // dd(auth()->user());
+        return view('dashboard');
     }
 }
