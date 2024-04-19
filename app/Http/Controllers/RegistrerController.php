@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class RegistrerController extends Controller
 {
@@ -17,6 +20,9 @@ class RegistrerController extends Controller
         // dd($request);    De esta manera accedo a todos lo valores
         // dd($request->get('email'));  De esta manera solo accede al valor que quiero ver
 
+        $request->request->add(['username'=> Str::slug($request->username)]);
+
+
         //Validacion
         $this->validate($request, [
             // 'name' => 'required|max:30',
@@ -26,7 +32,17 @@ class RegistrerController extends Controller
             'password' => ['required','confirmed','min:6']
         ]);
 
-        dd('Creando Usuario');
+        User::create([
+            'name' => $request->name,
+            'username' => $request->username,
+            'email' => $request->email,
+            'password' => Hash::make($request->password)
+        ]);
 
+
+
+        //Redireccionamiento despues de crear el usuario
+        return redirect()->route('posts.index');
+        
     }
 }
