@@ -26,7 +26,8 @@
                             Crear
                         </a>
 
-                        <a class="font-bold text-gray-60 text-sm" href="#">
+                        <a class="font-bold text-gray-60 text-sm" 
+                        href="{{route('posts.index', auth()->user()->username)}}">
                             Hola: 
                             <span class="font-normal">
                                 {{auth()->user()->username}}
