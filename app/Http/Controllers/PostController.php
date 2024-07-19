@@ -48,12 +48,20 @@ class PostController extends Controller
         // ]);
 
         // Manera numero 2 de crear un registro
-        $post = new Post;
-        $post->titulo = $request->titulo;
-        $post->descripcion = $request->descripcion;
-        $post->imagen = $request->imagen;
-        $post->user_id = auth()->user()->id;
-        $post->save();
+        // $post = new Post;
+        // $post->titulo = $request->titulo;
+        // $post->descripcion = $request->descripcion;
+        // $post->imagen = $request->imagen;
+        // $post->user_id = auth()->user()->id;
+        // $post->save();
+
+        // Manera numero 3 de crear un registro pero al estilo de Laravel
+        $request->user()->posts()->create([
+            'titulo' => $request->titulo,
+            'descripcion' => $request->descripcion,
+            'imagen' => $request->imagen,
+            'user_id' =>auth()->user()->id
+        ]);
 
         return redirect()->route('posts.index', auth()->user()->username);
     }
