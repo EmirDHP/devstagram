@@ -43,7 +43,7 @@ Perfil: {{$user->username}}
     <div class="grid md:grid-md-cols-2 lg:grid-cols-3 xl:grids-cols-4 gap-6">
         @foreach ($posts as $post)
             <div>
-                <a>
+                <a href="{{ route('posts.show', $post)}}">
                     <img src="{{ asset('uploads') . '/' . $post->imagen }}" alt="Imagen del post {{
                     $post->titulo }}">
                 </a>
