@@ -18,8 +18,14 @@ class PostController extends Controller
     {
         // dd(auth()->user());
         // dd($user->username);
+
+        $posts = Post::where('user_id', $user -> id)->paginate(9);
+
+        // dd($post);
+
         return view('dashboard',[
-            'user'=> $user
+            'user'=> $user,
+            'posts'=>$posts
         ]);
     }
 
